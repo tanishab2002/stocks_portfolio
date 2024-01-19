@@ -1,0 +1,16 @@
+#spring:
+#  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/stock_portfolio?useUnicode=true&characterEncoding=utf8
+#    username: root
+#    password: 9956154518@Ta
+#  jpa:
+#    database-platform: org.hibernate.dialect.MySQLDialect
+#    database: MYSQL
+#    openInView: false
+#    show_sql: true
+#    generate-ddl: false
+#    hibernate:
+#      dialect:
+#        storage_engine: innodb
