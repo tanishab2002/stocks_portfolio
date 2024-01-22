@@ -38,7 +38,7 @@ public class TradeServiceTests {
     }
 
     @Test
-    public void testSaveTradeValid(){
+    public void testSaveTradeValid() throws Exception {
         Trade trade = new Trade(1, 1, "IN0020010081", "Buy", 1);
 
         when(userService.isUserPresent(trade.getUserId()))
@@ -59,7 +59,7 @@ public class TradeServiceTests {
     }
 
     @Test
-    public void testSaveTrade_InvalidData(){
+    public void testSaveTrade_InvalidData() throws Exception {
         Trade trade = new Trade(1, 1, "IIN0020010081", "Buy", 1);
 
         when(userService.isUserPresent(trade.getUserId()))
