@@ -27,7 +27,7 @@ public class StockServiceTests {
     }
 
     @Test
-    public void testGetStockByIdStockExists(){
+    public void testGetStockByIdStockExists() throws Exception {
         String stockId = "IN0020010081";
         Stock stock = new Stock(stockId, "1018GS2026", 121.31, 121.31, 121.31, 121.31);
 

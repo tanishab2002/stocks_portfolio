@@ -13,4 +13,8 @@ public class UserDTO {
     private  long userId;
 
     private String name;
+
+    private String email;
+
+    private String contact;
 }

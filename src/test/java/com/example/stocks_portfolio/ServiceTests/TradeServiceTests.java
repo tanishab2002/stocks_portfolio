@@ -6,6 +6,7 @@ import com.example.stocks_portfolio.exceptions.DataNotFoundException;
 import com.example.stocks_portfolio.repositories.PortfolioRepository;
 import com.example.stocks_portfolio.repositories.StockRepository;
 import com.example.stocks_portfolio.repositories.TradeRepository;
+import com.example.stocks_portfolio.service.PortfolioService;
 import com.example.stocks_portfolio.service.TradeService;
 import com.example.stocks_portfolio.service.UserService;
 import com.example.stocks_portfolio.service.impl.TradeServiceImpl;
@@ -28,13 +29,15 @@ public class TradeServiceTests {
     private PortfolioRepository portfolioRepository;
     private TradeService tradeService;
 
+    private PortfolioService portfolioService;
+
     @BeforeEach
     public void setUp(){
         tradeRepository = mock(TradeRepository.class);
         userService = mock(UserService.class);
         stockRepository = mock(StockRepository.class);
         portfolioRepository = mock(PortfolioRepository.class);
-        tradeService = new TradeServiceImpl(tradeRepository, userService, stockRepository, portfolioRepository);
+        tradeService = new TradeServiceImpl(tradeRepository, userService, stockRepository, portfolioRepository, portfolioService);
     }
 
     @Test

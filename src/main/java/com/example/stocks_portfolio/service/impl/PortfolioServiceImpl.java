@@ -55,7 +55,7 @@ public class PortfolioServiceImpl implements PortfolioService {
         return preparePortfolio(id, stockIds);
     }
 
-    private PortfolioDTO preparePortfolio(Long id, List<String> stockIds) {
+    private PortfolioDTO preparePortfolio(Long id, List<String> stockIds) throws Exception {
 
         PortfolioDTO portfolioDTO = new PortfolioDTO();
         portfolioDTO.setUserId(id);
@@ -90,10 +90,13 @@ public class PortfolioServiceImpl implements PortfolioService {
         double profit = portfolioDTO.getProfit();
         double buyPrice = portfolioDTO.getTotalBuyPrice();
 
+        if(buyPrice == 0)
+            return 0;
+
         return (profit / buyPrice) * 100;
     }
 
-    private List<HoldingDTO> createHoldingsList(long userId, List<String> stockIds) {
+    private List<HoldingDTO> createHoldingsList(long userId, List<String> stockIds) throws Exception {
         List<HoldingDTO> holdings = new ArrayList<>();
 //        System.out.println("Hello3");
         for(String stockId : stockIds){
@@ -110,6 +113,9 @@ public class PortfolioServiceImpl implements PortfolioService {
 //            System.out.println("Hello6");
             Map<String, Double> m = findTradeValues(userId, stockId, holding.getCurrentPrice());
 
+//            if(m.get("quantity") == 0){
+//                continue;
+//            }
 
             holding.setProfit(m.get("profit"));
             holding.setQuantity(m.get("quantity").intValue());
@@ -121,7 +127,7 @@ public class PortfolioServiceImpl implements PortfolioService {
         return holdings;
     }
 
-    private Map<String, Double> findTradeValues(long userId, String stockId, double currentPrice) {
+    private Map<String, Double> findTradeValues(long userId, String stockId, double currentPrice) throws Exception {
 
         List<Trade> trades = tradeRepository.findByUserIdAndStockId(userId, stockId);
 

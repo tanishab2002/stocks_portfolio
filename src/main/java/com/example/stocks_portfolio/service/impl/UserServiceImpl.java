@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO saveUser(User user) {
+    public UserDTO saveUser(User user) throws DataNotFoundException {
 
         if(user == null){
             throw new DataNotFoundException("Cannot be empty");
@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private UserDTO convertToUserDTO(User user) {
-        UserDTO userDTO = new UserDTO(user.getUserId(), user.getName());
+        UserDTO userDTO = new UserDTO(user.getUserId(), user.getName(), user.getEmail(), user.getContact());
 
         return userDTO;
     }

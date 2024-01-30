@@ -1,6 +1,7 @@
 package com.example.stocks_portfolio.controllers;
 
 import com.example.stocks_portfolio.DTO.StockDTO;
+import com.example.stocks_portfolio.exceptions.DataNotFoundException;
 import com.example.stocks_portfolio.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class StockController {
     private final StockService stockService;
 
     @GetMapping("/{id}")
-    public StockDTO getStockById(@PathVariable String id){
+    public StockDTO getStockById(@PathVariable String id) throws Exception {
         return stockService.getStockById(id);
     }
 

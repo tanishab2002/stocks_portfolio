@@ -21,7 +21,7 @@ public class StockServiceImpl implements StockService {
     private final StockRepository stockRepository;
 
     @Override
-    public StockDTO getStockById(String id) {
+    public StockDTO getStockById(String id) throws Exception {
         Optional<Stock> stock = stockRepository.findById(id);
 
         System.out.println(stock.isPresent());
