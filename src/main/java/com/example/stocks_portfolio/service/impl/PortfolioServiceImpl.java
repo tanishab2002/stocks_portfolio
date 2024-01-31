@@ -145,15 +145,18 @@ public class PortfolioServiceImpl implements PortfolioService {
                 quantity += trade.getQuantity();
                 buyPrice += (trade.getQuantity() * buy_price);
                 totalQuantity += trade.getQuantity();
+                profit = (trade.getQuantity() * buy_price) - (currentPrice * trade.getQuantity());
             }else{
                 quantity -= trade.getQuantity();
                 buyPrice -= (trade.getQuantity() * buy_price);
                 totalQuantity += trade.getQuantity();
+                profit = (trade.getQuantity() * buy_price) - (currentPrice * trade.getQuantity());
             }
         }
 
         totalBuyPrice = buyPrice / totalQuantity;
-        profit = totalBuyPrice - currentPrice;
+//        profit = totalBuyPrice - currentPrice;
+        profit /= totalQuantity;
 
         Map<String, Double> m = new HashMap<>();
         m.put("buyPrice", totalBuyPrice);
